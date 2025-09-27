@@ -1,47 +1,75 @@
 # Import modules to create of GUI
-from PySide6.QtGui import QIcon
-from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QApplication
-
-# Import the module that were created to generate the passwords
+from flask import Flask, render_template, request, jsonify
 from password_generator import password_generator
+import logging
+import os
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-class PasswordGenerator:
-    """Class that generate the app."""
-    def __init__(self):
-        """Function who is responsible to start the class."""
-        # Loading the GUI file
-        loading = QUiLoader()
+# Creating the application
+# app is the main site
+# __name__ is the variable who identifies this current file
 
-        # Loading the file at GUI
-        self.ui = loading.load('./graphicalinterface/password_graphical_interface.ui')
+app = Flask(__name__)
 
-        # Changing app title
-        self.ui.setWindowTitle('Password generator')
+# Main website address
+@app.route('/')
+# Function that will run
+def index():
+    """Render the main page"""
+    # It will show the main HTML page
+    return render_template('index.html')
 
-        # Change app default icon
-        self.ui.setWindowIcon(QIcon('./graphicalinterface/icon.png'))
+@app.route('/generate_password', methods=['POST'])
+def generate_password():
+    """Generate password based on user input"""
+    try:
+        # Get quantity from form
+        quantity = int(request.form.get('quantity', 16))
 
-        # Button that generate the password
-        self.ui.pushButton.clicked.connect(self.password_generator)
+        # Validate input
+        if quantity < 8:
+            return jsonify({'error': 'Password must be at least 8 characters'}), 400
+        if quantity > 50:
+            return jsonify({'error': 'Password must be less than 50 characters'}), 400
 
-    def password_generator(self):
-        """Function responsible to generate random password"""
-        # Get the quantity of password characters
-        quantity = int(self.ui.characters_quantity_line.text())
-
-        # Create the password
+        # Generate password
+        # Function who will generate the password
         password = password_generator(quantity)
 
-        # Move the password at the right field
-        password_field = self.ui.random_password_line
-        password_field.setText(password)
-        password_field.setReadOnly(True)        # Lock the password field only reading
+        logger.info(f"Generated password with {quantity} characters.")
 
+        return jsonify({ # Return the password in JSON format (as a data package)
+            'password': password,
+            'length': len(password)
+        })
+    # If the user type a letter instead a number
+    except ValueError:
+        return jsonify({'error': 'Please enter a valid number'}), 400
+    # Any other unexpected kind of error
+    except Exception as e:
+        logger.error(f"Error generating password: {str(e)}")
+        return jsonify({'error': 'Internal server error'}), 500
 
+# For others software to use
+@app.route('/api/generate/<int:quantity>')
+# Get the number directly from the URL
+def api_generate(quantity):
+    """API endpoint for password generation"""
+    try:
+        if quantity < 8 or quantity > 50:
+            return jsonify({'error': 'Quantity must be between 8 and 50'}), 400
+        password = password_generator(quantity)
+        return jsonify({'password': password, 'length': len(password)})
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Just run if it's the main file
 if __name__ == '__main__':
-    app = QApplication()
-    interface = PasswordGenerator()
-    interface.ui.show()
-    app.exec()
+    # Get the Render ambient port
+    # Accept connection from anywhere (host = '0.0.0.0')
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)

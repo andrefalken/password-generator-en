@@ -3,7 +3,7 @@ from random import choices, choice, randint
 import string
 
 # Import the characters module and word list
-from characters import characters
+# from characters import characters
 from word_list import english_words
 
 
@@ -31,7 +31,7 @@ def password_generator(quantity: int) -> str:
         current_length += len(capitalized_word)
 
         # Don't add too many words if the quantity is small
-        if len(password_parts) >= 3 and current_length >= target_length * 0.7:
+        if len(password_parts) >= 4 or current_length >= target_length:
             break
 
     # Join all words together
@@ -44,13 +44,19 @@ def password_generator(quantity: int) -> str:
     # Add 4 random digits
     password += ''.join(choices(string.digits, k=4))
 
+    # If the password is too short, add more words
+    while len(password) < quantity - 2:
+        word = choice(english_words)
+        password += word.capitalize()
+
     # If the password is too long, truncate it
     if len(password) > quantity:
         password = password[:quantity]
 
     return password
 
-
+# Test function
 if __name__ == '__main__':
-    password = password_generator(20)
-    print(f"Generated password: {password}")
+    test_passwords = [password_generator(i) for i in [12, 16, 20, 25]]
+    for pwd in test_passwords:
+        print(f"{len(pwd)} characters: {pwd}")
