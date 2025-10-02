@@ -1,165 +1,454 @@
+/* CSS Reset - Basic Styling Normalization */
+/* Reset all elements to remove default browser margins and padding */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0;          /* Remove default margin from all elements */
+    padding: 0;         /* Remove default padding from all elements */
+    box-sizing: border-box; /* Include padding and border in element's total width/height */
 }
 
+/* Body Styling - Page Background and Typography */
 body {
+    /* Font family stack for cross-browser compatibility */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* Gradient background from purple to blue */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    /* Minimum height of 100% of viewport height */
     min-height: 100vh;
+
+    /* Padding around the entire page */
     padding: 20px;
 }
 
+
+/* Main Container - Centered Context Box */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    overflow: hidden;
+    max-width: 600px;           /* Maximum width of the content */
+    margin: 0 auto;             /* Center horizontally: 0 top/bottom, auto left/right */
+    background: white;          /* White background for content */
+    border-radius: 15px;        /* Rounded corners */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* Shadow for depth effect */
+    overflow: hidden;           /* Hide any content that overflows the container */
 }
 
+/* Header Section - Title and Description */
 header {
-    background: #2c3e50;
-    color: white;
-    padding: 30px;
-    text-align: center;
+    background: #2c3e50;        /* Dark blue background */
+    color: white;               /* White text color */
+    padding: 10px;              /* Space inside header */
+    text-align: center;         /* Center align text */
 }
 
+/* Application icon styling */
 .title-icon {
-    width: 40px;          /* Tamanho do ícone */
-    height: 40px;
-    vertical-align: middle; /* Alinha com o texto */
-    margin-right: 15px;   /* Espaço entre ícone e texto */
-    border-radius: 5px;   /* Cantos arredondados (opcional) */
+    width: 40px;                /* Fixed width */
+    height: 40px;               /* Fixed height */
+    vertical-align: middle;     /* Align with text baseline */
+    margin-right: 5px;         /* Space between icon and text */
+    border-radius: 5px;         /* Slightly rounded corners */
 }
 
+/* Main title styling */
 header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 2.5em;           /* Large font size (2.5 times normal) */
+    margin-bottom: 5px;        /* Space below title */
 }
 
+/* Subtitle/description styling */
 header p {
-    opacity: 0.8;
-    font-size: 1.1em;
+    opacity: 0.8;               /* Slightly transparent text */
+    font-size: 1.1em;           /* Slightly larger than normal text */
 }
 
+/* Password Generator Card - Main Interface */
 .generator-card {
-    padding: 30px;
+    padding: 30px;              /* Space inside the card */
 }
 
+/* Input group container */
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px;        /* Space below input group */
 }
 
+/* Form label styling */
 label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #2c3e50;
+    display: block;             /* Make label take full width */
+    margin-bottom: 8px;         /* Space below label */
+    font-weight: 600;           /* Semi-bold text */
+    color: #2c3e50;             /* Dark blue text color */
 }
 
+/* Number input field styling */
 input[type="number"] {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    margin-bottom: 15px;
+    width: 100%;                /* Full width of container */
+    padding: 12px;              /* Space inside input */
+    border: 2px solid #ddd;     /* Light gray border */
+    border-radius: 8px;         /* Rounded corners */
+    font-size: 16px;            /* Comfortable font size */
+    margin-bottom: 15px;        /* Space below input */
 }
 
+
+/* Button Styling - Interactive Elements */
 button {
-    background: #3498db;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
+    background: #3498db;        /* Blue background */
+    color: white;               /* White text */
+    border: none;               /* Remove default border */
+    padding: 12px 24px;         /* Vertical and horizontal padding */
+    border-radius: 8px;         /* Rounded corners */
+    cursor: pointer;            /* Show hand cursor on hover */
+    font-size: 16px;            /* Comfortable font size */
+    transition: background 0.3s; /* Smooth color transition */
 }
 
+/* Button hover effect */
 button:hover {
-    background: #2980b9;
+    background: #2980b9;        /* Darker blue on hover */
 }
 
+/* Disabled button styling */
 button:disabled {
-    background: #bdc3c7;
-    cursor: not-allowed;
+    background: #bdc3c7;        /* Gray background when disabled */
+    cursor: not-allowed;        /* Show disabled cursor */
 }
 
+
+/* Password Display Section */
 .password-display {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    display: flex;              /* Use flexbox for layout */
+    gap: 10px;                  /* Space between elements */
+    margin-bottom: 15px;        /* Space below display */
 }
 
+/* Password output field */
 #passwordOutput {
-    flex: 1;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: 'Courier New', monospace;
-    background: #f8f9fa;
+    flex: 1;                    /* Take remaining space */
+    padding: 12px;              /* Space inside field */
+    border: 2px solid #ddd;     /* Light gray border */
+    border-radius: 8px;         /* Rounded corners */
+    font-size: 16px;            /* Comfortable font size */
+    font-family: 'Courier New', monospace; /* Monospace font for passwords */
+    background: #f8f9fa;        /* Light gray background */
 }
 
+/* Copy button specific styling */
 #copyBtn {
-    background: #27ae60;
+    background: #27ae60;        /* Green background */
 }
 
 #copyBtn:hover {
-    background: #219a52;
+    background: #219a52;        /* Darker green on hover */
 }
 
+/* Password Information Section */
 .password-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9em;
-    color: #7f8c8d;
-    margin-bottom: 30px;
+    display: flex;                  /* Use flexbox for layout */
+    justify-content: space-between; /* Space elements evenly */
+    font-size: 0.9em;              /* Slightly smaller text */
+    color: #7f8c8d;                /* Gray text color */
+    margin-bottom: 30px;           /* Space below info */
 }
 
+/* Examples and API Info Sections - "Built with Python Flask and Social Media Icons"*/
 .examples, .api-info {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    background: #f8f9fa;        /* Light gray background */
+    padding: 10px;              /* Space inside */
+    border-radius: 6px;         /* Rounded corners */
+    margin-bottom: 20px;        /* Space below */
 }
 
 .examples h3, .api-info h3 {
-    margin-bottom: 10px;
-    color: #2c3e50;
+    margin-bottom: 7px;         /* Space below headings */
+    color: #2c3e50;             /* Dark blue text */
 }
 
+/* Code block styling */
 code {
-    background: #2c3e50;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
+    background: #2c3e50;        /* Dark blue background */
+    color: white;               /* White text */
+    padding: 5px 10px;          /* Space inside */
+    border-radius: 4px;         /* Rounded corners */
+    font-family: 'Courier New', monospace; /* Monospace font */
 }
 
+/* Unordered list styling */
 ul {
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-left: 20px;          /* Indent list */
+    margin-top: 10px;           /* Space above list */
 }
 
+/* Footer Styling */
 footer {
-    background: #ecf0f1;
-    text-align: center;
-    padding: 20px;
-    color: #7f8c8d;
+    background: #ecf0f1;        /* Light gray background */
+    text-align: center;         /* Center align content */
+    padding: 20px;              /* Space inside footer */
+    color: #7f8c8d;             /* Gray text color */
 }
 
+
+/* Responsive Design - Mobile Styles */
 @media (max-width: 600px) {
+    /* Adjust container for small screens */
     .container {
-        margin: 10px;
-        border-radius: 10px;
+        margin: 10px;           /* Smaller margins */
+        border-radius: 10px;    /* Slightly smaller rounded corners */
     }
 
+    /* Stack password display vertically on mobile */
     .password-display {
-        flex-direction: column;
+        flex-direction: column; /* Change to vertical layout */
+    }
+}
+
+/* Social Links Styling */
+.social-links {
+    display: flex;                  /* Use flexbox for layout */
+    justify-content: center;        /* Center horizontally */
+    align-items: center;            /* Center vertically */
+    gap: 10px;                      /* Space between icons */
+    margin: 15px 0;                 /* Vertical margin */
+    padding: 0px;                  /* Space inside */
+    background: #f8f9fa;            /* Light gray background */
+    border-radius: 10px;            /* Rounded corners */
+}
+
+.social-link {
+    display: inline-block;          /* Inline block element */
+    transition: all 0.3s ease;      /* Smooth transitions */
+    padding: 8px;                   /* Space around icon */
+    border-radius: 6px;             /* Rounded corners */
+    background: white;              /* White background */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.social-link:hover {
+    transform: translateY(-2px);    /* Lift effect on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow */
+    background: #e3f2fd;            /* Light blue background */
+}
+
+.social-icon {
+    width: 26px;                    /* Fixed width */
+    height: 26px;                   /* Fixed height */
+    display: block;                 /* Block display to remove extra space */
+    border-radius: 3px;             /* Slightly rounded corners */
+}
+
+/* API Info Specific Styling */
+.api-info {
+    background: #f8f9fa;        /* Light gray background */
+    padding: 10px;              /* Compact padding */
+    border-radius: 5px;         /* Rounded corners */
+    margin: 2px 0;              /* Minimal margin */
+    border-left: 4px solid #3498db; /* Blue left border */
+}
+
+.http-method {
+    background: #28a745;        /* Green background */
+    color: white;               /* White text */
+    padding: 2px 6px;           /* Compact padding */
+    border-radius: 3px;         /* Rounded corners */
+    font-weight: bold;          /* Bold text */
+}
+
+.api-endpoint {
+    font-family: 'Courier New', monospace; /* Monospace font */
+    background: #2c3e50;        /* Dark blue background */
+    color: white;               /* White text */
+    padding: 5px 10px;          /* Space inside */
+    border-radius: 5px;         /* Rounded corners */
+}
+
+.api-description {
+    font-size: 0.9em;           /* Slightly smaller text */
+    color: #666;                /* Gray text color */
+    margin-top: 8px;            /* Space above description */
+}
+
+/* Password Strength Indicator */
+.password-strength {
+    margin: 5px 0;              /* Minimal vertical margin */
+    padding: 6px;               /* Compact padding */
+    background: #f8f9fa;        /* Light gray background */
+    border-radius: 8px;         /* Rounded corners */
+    border-left: 4px solid #6c757d; /* Gray left border */
+}
+
+.strength-header {
+    display: flex;                  /* Use flexbox for layout */
+    justify-content: space-between; /* Space elements evenly */
+    align-items: center;            /* Center vertically */
+    margin-bottom: 10px;            /* Space below header */
+    font-weight: 600;               /* Semi-bold text */
+}
+
+.strength-bar {
+    width: 100%;                /* Full width */
+    height: 8px;                /* Fixed height */
+    background: #e9ecef;        /* Light gray background */
+    border-radius: 4px;         /* Rounded corners */
+    overflow: hidden;           /* Hide overflow */
+    margin-bottom: 8px;         /* Space below bar */
+}
+
+.strength-meter {
+    height: 100%;               /* Full height of container */
+    width: 0%;                  /* Start with 0 width */
+    border-radius: 4px;         /* Rounded corners */
+    transition: all 0.3s ease;  /* Smooth transitions */
+}
+
+/* Weak password styling */
+.strength-weak .strength-meter {
+    background: #dc3545;        /* Red color */
+    width: 33%;                 /* 33% width for weak */
+}
+
+/* Medium password styling */
+.strength-medium .strength-meter {
+    background: #ffc107;        /* Yellow color */
+    width: 66%;                 /* 66% width for medium */
+}
+
+/* Strong password styling */
+.strength-strong .strength-meter {
+    background: #28a745;        /* Green color */
+    width: 100%;                /* 100% width for strong */
+}
+
+/* Strength text colors */
+.strength-weak #strengthText { color: #dc3545; }    /* Red text */
+.strength-medium #strengthText { color: #ffc107; }  /* Yellow text */
+.strength-strong #strengthText { color: #28a745; }  /* Green text */
+
+.strength-details {
+    font-size: 0.8em;           /* Small text */
+    color: #6c757d;             /* Gray text color */
+    margin-top: 5px;            /* Space above details */
+}
+
+/* Strength criteria items */
+.strength-criteria {
+    display: flex;              /* Use flexbox for layout */
+    align-items: center;        /* Center vertically */
+    gap: 5px;                   /* Space between icon and text */
+    margin: 2px 0;              /* Minimal vertical margin */
+}
+
+.criteria-met { color: #28a745; }      /* Green for met criteria */
+.criteria-missing { color: #dc3545; }  /* Red for missing criteria */
+
+/* Language Selection Section */
+.language-section {
+    margin-top: 25px;               /* Space above section */
+    padding-top: 25px;              /* Space inside top */
+    border-top: 1px solid #e9ecef;  /* Top border line */
+    text-align: center;             /* Center align content */
+}
+
+.language-label {
+    font-size: 0.9em;               /* Slightly smaller text */
+    color: #6c757d;                 /* Gray text color */
+    margin-bottom: 15px;            /* Space below label */
+    font-weight: 600;               /* Semi-bold text */
+    text-transform: uppercase;      /* Uppercase text */
+    letter-spacing: 1px;            /* Space between letters */
+}
+
+.language-links {
+    display: flex;                  /* Use flexbox for layout */
+    justify-content: center;        /* Center horizontally */
+    align-items: center;            /* Center vertically */
+    gap: 20px;                      /* Space between flags */
+}
+
+.language-link {
+    display: flex;                  /* Use flexbox for layout */
+    flex-direction: column;         /* Stack items vertically */
+    align-items: center;            /* Center horizontally */
+    padding: 12px;                  /* Space around content */
+    border-radius: 10px;            /* Rounded corners */
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); /* Gradient */
+    border: 2px solid transparent;  /* Transparent border */
+    transition: all 0.3s ease;      /* Smooth transitions */
+    text-decoration: none;          /* Remove underline */
+    position: relative;             /* For positioning tooltips */
+}
+
+.language-link:hover {
+    transform: translateY(-3px);    /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Enhanced shadow */
+    border-color: #007bff;          /* Blue border on hover */
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); /* Blue gradient */
+}
+
+/* Tooltip on hover */
+.language-link:hover::after {
+    content: attr(title);           /* Use title attribute as content */
+    position: absolute;             /* Position absolutely */
+    bottom: -35px;                  /* Position below element */
+    left: 50%;                      /* Center horizontally */
+    transform: translateX(-50%);    /* Perfect centering */
+    background: #333;               /* Dark background */
+    color: white;                   /* White text */
+    padding: 5px 10px;              /* Space inside tooltip */
+    border-radius: 4px;             /* Rounded corners */
+    font-size: 0.8em;               /* Small text */
+    white-space: nowrap;            /* Prevent text wrapping */
+    z-index: 1000;                  /* Ensure tooltip is on top */
+}
+
+/* Tooltip arrow */
+.language-link:hover::before {
+    content: '';                    /* Empty content */
+    position: absolute;             /* Position absolutely */
+    bottom: -5px;                   /* Position at bottom */
+    left: 50%;                      /* Center horizontally */
+    transform: translateX(-50%);    /* Perfect centering */
+    border-width: 5px;              /* Arrow size */
+    border-style: solid;            /* Solid border */
+    border-color: transparent transparent #333 transparent; /* Triangle shape */
+}
+
+.language-icon {
+    width: 36px;                    /* Fixed width */
+    height: 27px;                   /* Fixed height (flag ratio) */
+    border-radius: 4px;             /* Slightly rounded corners */
+    display: block;                 /* Block display */
+    object-fit: cover;              /* Maintain aspect ratio */
+    margin-bottom: 5px;             /* Space below icon */
+}
+
+.language-text {
+    font-size: 0.7em;               /* Small text */
+    color: #495057;                 /* Dark gray text */
+    font-weight: 600;               /* Semi-bold text */
+    text-transform: uppercase;      /* Uppercase text */
+    letter-spacing: 0.5px;          /* Space between letters */
+}
+
+/* Current language highlighting */
+.language-link[title="English Version"] {
+    border-color: #007bff;          /* Blue border */
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); /* Blue gradient */
+    box-shadow: 0 4px 8px rgba(0,123,255,0.2); /* Blue shadow */
+}
+
+/* Mobile Responsive Styles for Language Section */
+@media (max-width: 600px) {
+    .language-links {
+        gap: 12px;                  /* Smaller gap on mobile */
+        flex-wrap: wrap;            /* Allow wrapping on small screens */
+    }
+
+    .language-link {
+        padding: 8px;               /* Smaller padding on mobile */
+        flex: 0 0 auto;             /* Don't grow or shrink */
+    }
+
+    .language-icon {
+        width: 30px;                /* Smaller icons on mobile */
+        height: 22px;               /* Maintain aspect ratio */
     }
 }
