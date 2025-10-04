@@ -1,4 +1,4 @@
-# Import modules to create of GUI
+# Import modules
 from flask import Flask, render_template, request, jsonify
 from password_generator import password_generator
 import logging
