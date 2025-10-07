@@ -1,64 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Character encoding for proper text display -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <!-- Viewport settings for responsive design on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='icon2.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon2.ico') }}" type="image/x-icon">
+
+    <!-- To have a better compatibility with different gadgets -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='icon2.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icon2.ico') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='icon2.ico') }}">
+
     <title>English Password Generator</title>
+    <!-- Link to external CSS file for styling -->
+    <!-- url_for() is Flask syntax to generate correct file paths -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <!-- Main container that holds all page content -->
     <div class="container">
         <header>
+            <!-- Main page title with icon -->
             <h1>
+                <!-- Application icon -->
                 <img src="{{ url_for('static', filename='icon.png') }}" alt="Icon" class="title-icon">
+                <!-- Main title text -->
                 Password Generator
             </h1>
+            <!-- Subtitle/description -->
             <p>Create secure and memorable passwords</p>
         </header>
 
+        <!-- Main Content Section - Password Generator -->
         <main>
+            <!-- Card containing the password generator interface -->
             <div class="generator-card">
+                <!-- Input section for password length -->
                 <div class="input-group">
+                    <!-- Label for the number input -->
                     <label for="quantity">Password Length (8-50 characters):</label>
+                    <!-- Number input field with validation -->
                     <input type="number" id="quantity" name="quantity" min="8" max="50" value="16">
+                    <!-- Button to trigger password generation -->
                     <button id="generateBtn">Generate Password</button>
                 </div>
 
+                <!-- Section to display generated password -->
                 <div class="password-display">
+                    <!-- Read-only field showing the generated password -->
                     <input type="text" id="passwordOutput" readonly>
+                    <!-- Button to copy password to clipboard -->
                     <button id="copyBtn">Copy</button>
                 </div>
 
+                <!-- Password strength indicator section -->
+                <div class="password-strength">
+                    <div class="strength-header">
+                        <!-- Strength label -->
+                        <span>Password Strength:</span>
+                        <!-- Dynamic text showing strength level -->
+                        <span id="strengthText">-</span>
+                    </div>
+                    <!-- Visual strength bar -->
+                    <div class="strength-bar">
+                        <!-- Animated meter that fills based on strength -->
+                        <div id="strengthMeter" class="strength-meter"></div>
+                    </div>
+                    <!-- Detailed strength criteria -->
+                    <div id="strengthDetails" class="strength-details"></div>
+                </div>
+
+                <!-- Additional password information -->
                 <div class="password-info">
+                    <!-- Shows current password length -->
                     <span id="passwordLength">16 characters</span>
+                    <!-- Shows password generation time -->
                     <span id="generationTime"></span>
                 </div>
+            </div>
+        </main>
 
-                <div class="examples">
-                    <h3>Example Format:</h3>
-                    <code>MyBornCityIsNewYork_1998</code>
-                    <ul>
-                        <li>English words with capitalized first letters</li>
-                        <li>Special character separator</li>
-                        <li>4-digit number at the end</li>
-                    </ul>
+        <!-- Footer Section - Social Links & Languages -->
+        <footer>
+            <!-- Language selection section -->
+            <div class="language-section">
+                <!-- Language section title -->
+                <p class="language-label">Available Languages</p>
+                <!-- Container for language flags -->
+                <div class="language-links">
+                    <!-- Portuguese version link -->
+                    <a href="#" class="language-link" data-tooltip="Portuguese Version">
+                        <!-- Brazil flag icon -->
+                        <img src="{{ url_for('static', filename='brazil.png') }}" alt="Português" class="language-icon">
+                        <!-- Language code -->
+                        <span class="language-text">PT</span>
+                    </a>
+                    <!-- Spanish version link -->
+                    <a href="#" class="language-link" data-tooltip="Spanish Version">
+                        <!-- Spain flag icon -->
+                        <img src="{{ url_for('static', filename='spain.png') }}" alt="Español" class="language-icon">
+                        <!-- Language code -->
+                        <span class="language-text">ES</span>
+                    </a>
+                    <!-- English version link (current) -->
+                    <a href="#" class="language-link current-language" data-tooltip="English Version">
+                        <!-- USA flag icon -->
+                        <img src="{{ url_for('static', filename='usa.png') }}" alt="English" class="language-icon">
+                        <!-- Language code -->
+                        <span class="language-text">EN</span>
+                    </a>
                 </div>
             </div>
 
-            <div class="api-info">
-                <h3>API Usage:</h3>
-                <code>GET /api/generate/password</code>
+            <!-- Social media links section -->
+            <div class="examples">
+                  <div class="contact-header">
+                      <div class="contact-content">
+                          <div class="contact-main">
+                              <span class="contact-icon">🚀</span>
+                              <h3 class="contact-title">Let's build something amazing</h3>
+                          </div>
+                          <span class="contact-subtitle">Connect with me</span>
+                      </div>
+                  </div>
+                <!-- Container for social media icons -->
+                <div class="social-links">
+                    <!-- Pão de Queijo -->
+                    <a href="#" class="social-link" data-tooltip="Click here, I'm an Easter Egg!">
+                        <img src="{{ url_for('static', filename='pao-de-queijo.png') }}" alt="Pão de Queijo" class="social-icon easter-egg">
+                    </a>
+                    <!-- LinkedIn profile link -->
+                    <a href="https://linkedin.com/in/andre-luis-romualdo/" target="_blank" class="social-link" data-tooltip="Reach me out at my Linkedin">
+                        <!-- LinkedIn icon -->
+                        <img src="{{ url_for('static', filename='linkedin.png') }}" alt="LinkedIn" class="social-icon">
+                    </a>
+                    <!-- GitHub profile link -->
+                    <a href="https://github.com/andrefalken" target="_blank" class="social-link" data-tooltip="Visit my Github">
+                        <!-- GitHub icon -->
+                        <img src="{{ url_for('static', filename='github.png') }}" alt="GitHub" class="social-icon">
+                    </a>
+                </div>
             </div>
 
-        </main>
-
-    <footer>
-        <p>Built with Python Flask</p>
-        <p>github.com/andrefalken</p>
-        <p>linkedin.com/in/andre-luis-romualdo/</p>
-    </footer>
+            <!-- API Information Section -->
+            <div class="api-info">
+                <!-- API section title -->
+                <h3>🔧 API for Developers</h3>
+                <!-- API usage example -->
+                <div class="api-example">
+                    <!-- HTTP method badge -->
+                    <span class="http-method">GET</span>
+                    <!-- API endpoint with highlighted parameter -->
+                    <code class="api-endpoint">/api/generate/<mark>16</mark></code>
+                </div>
+                <!-- API usage instructions -->
+                <p class="api-description">
+                    Replace <mark>16</mark> with desired password length (8-50)
+                </p>
+            </div>
+        </footer>
     </div>
 
+    <!-- JavaScript - Page Functionality -->
+    <!-- Link to external JavaScript file -->
+    <!-- This file contains all the interactive functionality -->
     <script src="{{ url_for('static', filename='script.js')}}"></script>
 </body>
 </html>
