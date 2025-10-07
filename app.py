@@ -1,4 +1,4 @@
-# Import modules to create of GUI
+# Import modules
 from flask import Flask, render_template, request, jsonify
 from password_generator import password_generator
 import logging
@@ -69,7 +69,4 @@ def api_generate(quantity):
 
 # Just run if it's the main file
 if __name__ == '__main__':
-    # Get the Render ambient port
-    # Accept connection from anywhere (host = '0.0.0.0')
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(debug=False)
